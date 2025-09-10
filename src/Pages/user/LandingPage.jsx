@@ -24,7 +24,7 @@ function LandingPage() {
             <div className='min-h-screen pt-20'>
                 {/* Search Section */}
                 <div className='flex justify-center pt-10 px-2'>
-                    <div className='bg-linear-to-l from-green-900 via-purple-850 to-green-400 h-76 w-full md:w-335 rounded-2xl'>
+                    <div className='bg-linear-to-l from-green-900 via-purple-850 to-yellow-400 h-76 w-full md:w-335 rounded-2xl'>
                         <div className='text-white pt-15 space-y-2'>
                             <h1 className='font-[500] text-2xl px-7 md:text-4xl text-center'>
                                 Over 10,000+ jobs to apply
