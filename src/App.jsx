@@ -7,6 +7,10 @@ import LandingPage from './Pages/user/LandingPage'
 import Auth from './Pages/user/Auth'
 import AdminAuth from './Pages/user/AdminAuth'
 import Administration from './Pages/admin/Administration'
+import Myapplication from './Pages/user/Myapplication'
+import Jobapplypage from './Pages/user/Jobapplypage'
+import ManageJob from './Pages/admin/Managejob'
+import Addjob from './Pages/admin/Addjob'
 
 function App() {
 
@@ -18,16 +22,16 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Auth login />} />
         <Route path="/register" element={<Auth />} />
-        {/* <Route path="/myapplication" element={<Myapplication />} /> */}
-        {/* <Route path="/application" element={<Jobapplypage />} /> */}
+        <Route path="/myapplication" element={<Myapplication/>} />
+        <Route path="/application" element={<Jobapplypage />} />
 
         {/* Admin side */}
         <Route path="/dash" element={<Dashboard />} />
         <Route path="/login-job" element={<AdminAuth login />} />
         <Route path="/register-job" element={<AdminAuth />} />
         <Route path="/administration" element={<Administration />} />
-        {/* <Route path="/manage" element={<ManageJob />} /> */}
-        {/* <Route path="/add" element={<Addjob />} /> */}
+        <Route path="/manage" element={<ManageJob />} />
+        <Route path="/add" element={<Addjob />} />
       </Routes>
     </>
   )
