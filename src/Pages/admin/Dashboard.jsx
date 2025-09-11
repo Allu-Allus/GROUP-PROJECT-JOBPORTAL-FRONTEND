@@ -25,7 +25,8 @@ function Dashboard() {
   </div>
 </div>
 
-<DashboardCard />
+
+<div className='p-5'><DashboardCard /></div>
 
 
 
