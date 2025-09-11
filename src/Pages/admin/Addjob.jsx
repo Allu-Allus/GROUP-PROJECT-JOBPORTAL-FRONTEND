@@ -20,6 +20,7 @@ const navigate = useNavigate()
     experience,
     dead,
   jobrole,
+  date,
   requirements,
   companyname,
   jobid,
@@ -37,7 +38,7 @@ if(!jobTitle ||
     !location ||
     !jobtype ||
     !experience ||
-    !dead ||
+    !dead || 
   !jobrole ||
   !requirements ||
   !companyname ||
@@ -85,6 +86,7 @@ console.log(jobData);
         type="text"
         placeholder="Job Title"
         className="border rounded-lg px-4 py-2.5 text-sm bg-gray-50"
+        
         onChange={(e)=>setJobData({...jobData,jobTitle:e.target.value})}
       />
       <input

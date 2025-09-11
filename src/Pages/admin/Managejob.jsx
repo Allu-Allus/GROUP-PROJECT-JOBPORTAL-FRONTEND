@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { MdOutlineCancel } from "react-icons/md";
 import { Link } from 'react-router-dom';
-import { deleteApi, getjobApi } from '../../Service/allApi';
+import { deleteApi, EditApi, getjobApi, UpdateApi } from '../../Service/allApi';
 
 
 function ManageJob({ getJob, setGetJob }) {
   const [modal, setModal] = useState(false)
+  const [selectedJob, setSelectedJob] = useState(null);
 
   const getData = async () => {
     try {
@@ -34,9 +35,37 @@ function ManageJob({ getJob, setGetJob }) {
 
   }
 
+// edit job data
+const getEditData = async (id)=>{
+  try {
+    const result = await EditApi(id)
+    console.log(result);
+    if (result?.data) {
+      setSelectedJob(result.data)
+      setModal(true)
+    }
+    
+  } catch (error) {
+    console.log(error);
+    
+  }
+ }
 
+ // update
 
-
+const handleUpdateJob = async(e)=>{
+  e.preventDefault()
+  try {
+    const result = await UpdateApi(selectedJob.id,selectedJob)
+    console.log(result);
+    setModal(false)
+    getData()
+    
+  } catch (error) {
+    console.log(error);
+    
+  }
+}
   useEffect(() => {
      getData() 
 
@@ -83,7 +112,8 @@ function ManageJob({ getJob, setGetJob }) {
 
             <div className="flex gap-2">
               <button
-                onClick={() => setModal(true)}
+                // onClick={() => setModal(true)}
+                 onClick={() => getEditData(item.id)}
                 className="flex-1 bg-blue-600 text-white py-2 rounded-xl hover:bg-blue-700 transition-colors text-sm"
               >
                 Edit
@@ -104,7 +134,7 @@ function ManageJob({ getJob, setGetJob }) {
 
 
 
-      {modal && <div
+      {modal &&   <div
         id="dialog"
         aria-labelledby="dialog-title"
         className="fixed inset-0 overflow-y-auto bg-transparent backdrop:bg-transparent z-50"
@@ -130,26 +160,33 @@ function ManageJob({ getJob, setGetJob }) {
             </div>
 
             <div className="p-6 bg-white overflow-y-auto flex-1">
-              <form className="grid grid-cols-2 gap-4">
-                <input type="text" placeholder="Job Title" className="border rounded-lg px-3 py-2 text-sm" />
-                <input type="text" placeholder="Company Name" className="border rounded-lg px-3 py-2 text-sm" />
+              <form className="grid grid-cols-2 gap-4" onSubmit={handleUpdateJob} >
 
-                <input type="text" placeholder="Location" className="border rounded-lg px-3 py-2 text-sm" />
-                <input type="text" placeholder="Work Type (Remote/Hybrid/Onsite)" className="border rounded-lg px-3 py-2 text-sm" />
+                <input type="text" placeholder="Job Title" value={selectedJob?.jobTitle || ""} onChange={(e) =>setSelectedJob({ ...selectedJob, jobTitle: e.target.value })}className="border rounded-lg px-3 py-2 text-sm" />
 
-                <input type="text" placeholder="Job Type (Full-time/Part-time)" className="border rounded-lg px-3 py-2 text-sm" />
-                <input type="text" placeholder="Salary Range" className="border rounded-lg px-3 py-2 text-sm" />
+                <input type="text" placeholder="Company Name" value={selectedJob?.companyname || ""} onChange={(e) =>setSelectedJob({ ...selectedJob, companyname: e.target.value })} className="border rounded-lg px-3 py-2 text-sm" />
 
-                <input type="text" placeholder="Experience Level" className="border rounded-lg px-3 py-2 text-sm" />
-                <input type="date" placeholder="Posted Date" className="border rounded-lg px-3 py-2 text-sm" />
+                <input type="text" placeholder="Location" value={selectedJob?.location || ""} onChange={(e) =>setSelectedJob({ ...selectedJob, location: e.target.value })} className="border rounded-lg px-3 py-2 text-sm" />
 
-                <input type="date" placeholder="Deadline" className="border rounded-lg px-3 py-2 text-sm" />
-                <input type="text" placeholder="Job ID" className="border rounded-lg px-3 py-2 text-sm" />
+                <input type="text" placeholder="Work Type (Remote/Hybrid/Onsite)" value={selectedJob?.worktype || ""} onChange={(e) =>setSelectedJob({ ...selectedJob, worktype: e.target.value })} className="border rounded-lg px-3 py-2 text-sm" />
 
-                <textarea placeholder="About the Role" className="border rounded-lg px-3 py-2 text-sm" />
-                <textarea placeholder="Responsibilities" className="border rounded-lg px-3 py-2 text-sm" />
+                <input type="text" placeholder="Job Type (Full-time/Part-time)" value={selectedJob?.jobtype || ""} onChange={(e) =>setSelectedJob({ ...selectedJob, jobtype: e.target.value })} className="border rounded-lg px-3 py-2 text-sm" />
 
-                <textarea placeholder="Requirements / Qualifications" className="border rounded-lg px-3 py-2 text-sm" />
+                <input type="text" placeholder="Salary Range" value={selectedJob?.salary || ""} onChange={(e) =>setSelectedJob({ ...selectedJob, salary: e.target.value })} className="border rounded-lg px-3 py-2 text-sm" />
+
+                <input type="text" placeholder="Experience Level" value={selectedJob?.experience || ""} onChange={(e) =>setSelectedJob({ ...selectedJob, experience: e.target.value })} className="border rounded-lg px-3 py-2 text-sm" />
+
+                <input type="date" placeholder="Posted Date" value={selectedJob?.date || ""} onChange={(e) =>setSelectedJob({ ...selectedJob, date: e.target.value })} className="border rounded-lg px-3 py-2 text-sm" />
+
+                <input type="date" placeholder="Deadline" value={selectedJob?.dead || ""} onChange={(e) =>setSelectedJob({ ...selectedJob, dead: e.target.value })} className="border rounded-lg px-3 py-2 text-sm" />
+
+                <input type="text" placeholder="Job ID"value={selectedJob?.jobid || ""} onChange={(e) =>setSelectedJob({ ...selectedJob, jobid: e.target.value })} className="border rounded-lg px-3 py-2 text-sm" />
+
+                <textarea placeholder="About the Role"   value={selectedJob?.jobrole || ""} onChange={(e) =>setSelectedJob({ ...selectedJob, jobrole: e.target.value })} className="border rounded-lg px-3 py-2 text-sm" />
+                  
+                <textarea placeholder="Responsibilities" value={selectedJob?.responsibilties || ""} onChange={(e) =>setSelectedJob({ ...selectedJob, responsibilties: e.target.value })} className="border rounded-lg px-3 py-2 text-sm" />
+
+                <textarea placeholder="Requirements / Qualifications"value={selectedJob?.requirements || ""} onChange={(e) =>setSelectedJob({ ...selectedJob, requirements: e.target.value })} className="border rounded-lg px-3 py-2 text-sm" />
                 <div className="flex justify-end">
                   <button
                     type="submit"
