@@ -1,19 +1,38 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { HiBuildingOffice } from "react-icons/hi2";
 import { IoLocationOutline } from "react-icons/io5";
 import { CiCreditCard1 } from "react-icons/ci";
 import JobOverviewCard from '../../Components/user/JobOverviewCard';
+import { getjobApi } from '../../Service/allApi';
 function JobDescription() {
+  const [getAllJob,setAllJob]=useState()
+  const getDataJob = async()=>{
+       try {
+        const result = await getjobApi()
+        console.log(result);
+        setAllJob(result.data)
+      
+        
+        
+      
+      
+       } catch (error) {
+        console.log(error);
+        
+       }
+      }
+      useEffect(()=>
+      {getDataJob()},[])
   return (
     <>
     <div className="max-w-6xl mx-auto mt-10 px-5 grid lg:grid-cols-3 gap-8">
   {/*job section */}
-  <div className="lg:col-span-2 space-y-4">
-    <h1 className="text-3xl font-bold text-gray-800">Frontend Developer</h1>
+  { getAllJob?.map((item) => ( <div className="lg:col-span-2 space-y-4">
+    <h1 className="text-3xl font-bold text-gray-800">{item?.jobTitle}</h1>
     
     <div className="flex items-center text-gray-600 space-x-4">
-      <p className="flex items-center gap-1"><HiBuildingOffice className="text-blue-600" /> TechCorp</p>
-      <p className="flex items-center gap-1"><IoLocationOutline className="text-blue-600" /> Infopark Phase-1 (Remote/Hybrid)</p>
+      <p className="flex items-center gap-1"><HiBuildingOffice className="text-blue-600" /> {item?.companyname}</p>
+      <p className="flex items-center gap-1"><IoLocationOutline className="text-blue-600" /> {item?.location} ({item?.worktype})</p>
       <p className="flex items-center gap-1"><CiCreditCard1 className="text-blue-600" /> Full-time</p>
     </div>
 
@@ -34,14 +53,10 @@ function JobDescription() {
       </ul>
 
       <h2 className="text-xl font-semibold">Requirements / Qualifications</h2>
-      <ul className="list-disc list-inside space-y-1">
-        <li>Bachelor’s degree in Computer Science, Information Technology, or related field.</li>
-        <li>Strong knowledge of HTML, CSS, JavaScript, and React.js.</li>
-        <li>Experience with responsive design and cross-browser compatibility.</li>
-        <li>Familiarity with version control systems, especially Git.</li>
-        <li>Good problem-solving skills and attention to detail.</li>
-        <li>Ability to work collaboratively in a team environment.</li>
-      </ul>
+      <p>
+        
+      </p>
+     
 
       <h2 className="text-xl font-semibold">Preferred Skills</h2>
       <ul className='list-disc list-inside space-y-1'>
@@ -61,7 +76,7 @@ function JobDescription() {
 </p>
 <p>Employment Type: Full-time</p>
     </div>
-  </div>
+  </div>))}
 
   {/*  Job Overview Card */}
   <div className="lg:col-span-1">

@@ -1,10 +1,30 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { MdOutlineCancel } from "react-icons/md";
 import { Link } from 'react-router-dom';
+import { getjobApi } from '../../Service/allApi';
 
 
-function ManageJob() {
+function ManageJob({getJob,setGetJob}) {
       const[modal,setModal]=useState(false)
+
+const getData = async()=>{
+ try {
+  const result = await getjobApi()
+  console.log(result);
+  setGetJob(result.data)
+
+  
+  
+
+
+ } catch (error) {
+  console.log(error);
+  
+ }
+}
+useEffect(()=>
+{getData()},[])
+
 
   return (
     <>
@@ -23,32 +43,43 @@ function ManageJob() {
     </Link>
   </div>
 </div>
+<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4  ms-10 mt-20">
+  {getJob?.map((item) => (
+    <div className="max-w-xs bg-gradient-to-b from-white to-gray-50 shadow-lg rounded-2xl p-4 border border-gray-200 hover:shadow-2xl transition-shadow duration-300">
+      <div>
+        <h2 className="text-2xl font-bold text-gray-900 mb-2">
+          {item?.jobTitle}
+        </h2>
 
-<div className="max-w-sm w-full bg-gradient-to-b from-white to-gray-50 shadow-lg rounded-2xl p-6 border border-gray-200 ms-20 mt-20 hover:shadow-2xl transition-shadow duration-300">
-  <h2 className="text-2xl font-bold text-gray-900 mb-2">Frontend Developer</h2>
+        <p className="text-lg font-medium text-blue-600 mb-1">
+          {item?.companyname}
+        </p>
 
-  <p className="text-lg font-medium text-blue-600 mb-1">TechCorp Pvt Ltd</p>
+        <p className="text-sm text-gray-600 bg-gray-100 inline-block px-3 py-1 rounded-full mb-3">
+          {item?.jobtype}
+        </p>
 
-  <p className="text-sm text-gray-600 bg-gray-100 inline-block px-3 py-1 rounded-full mb-3">
-    Full-time
-  </p>
+        <p className="text-xl font-semibold text-green-600 mb-5">
+          {item?.salary}
+        </p>
+      </div>
 
-  <p className="text-xl font-semibold text-green-600 mb-5">
-    ₹80,000 – ₹1,00,000
-  </p>
-
-  <div className="flex gap-3">
-    <button
-      onClick={() => setModal(true)}
-      className="flex-1 bg-blue-600 text-white py-2.5 rounded-xl hover:bg-blue-700 transition-colors"
-    >
-      Edit
-    </button>
-    <button className="flex-1 bg-red-600 text-white py-2.5 rounded-xl hover:bg-red-700 transition-colors">
-      Delete
-    </button>
-  </div>
+      <div className="flex gap-2">
+        <button
+          onClick={() => setModal(true)}
+          className="flex-1 bg-blue-600 text-white py-2 rounded-xl hover:bg-blue-700 transition-colors text-sm"
+        >
+          Edit
+        </button>
+        <button className="flex-1 bg-red-600 text-white py-2 rounded-xl hover:bg-red-700 transition-colors text-sm">
+          Delete
+        </button>
+      </div>
+    </div>
+  ))}
 </div>
+
+
 
 
 
