@@ -12,8 +12,6 @@ function JobCard() {
       console.log(result);
       setJobData(result.data)
     
-      
-      
     
     
      } catch (error) {
@@ -26,9 +24,12 @@ function JobCard() {
     
     return (
         <>
-            <div className='shadow rounded pb-5 mt-5 py-5 min-w-fit min-h-fit'>
+            
                 {/* <img className='w-13 pt-5 ps-5' src={google} alt="" /> */}
-           {getJobData?.map((item) => ( <div className='px-5 py-2'>
+           {getJobData?.map((item) => ( 
+            <div className='shadow rounded pb-5 mt-5 py-5 min-w-fit min-h-fit'>
+            
+            <div className='px-5 py-2'>
                 <h1 className='text-xl font-medium'>  {item?.jobTitle}</h1>
                 <div className='gap-2 items-center mt-2 flex'>
                     <button className='border text-sm font-light border-blue-500 bg-blue-50 backdrop-opacity-5 rounded px-4 py-1'>
@@ -53,8 +54,11 @@ function JobCard() {
                         Intermediate Level
                     </button>
                 </div>
-            </div>))}
             </div>
+        
+         </div>
+        ))}
+           
         </>
     )
 }
