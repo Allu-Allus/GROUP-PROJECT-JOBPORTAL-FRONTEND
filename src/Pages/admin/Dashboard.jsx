@@ -1,7 +1,7 @@
 import React from 'react'
 import DashboardCard from '../../Components/admin/DashboardCard'
 import { Link } from 'react-router-dom'
-
+import { IoIosArrowForward } from "react-icons/io";
 function Dashboard() {
   return (
     <>
@@ -18,10 +18,10 @@ function Dashboard() {
       <button
         type="button"
         className="flex items-center gap-2 bg-blue-600 text-white px-6 py-2 rounded-xl shadow-md hover:bg-blue-700 transition-all duration-200"
-      >
-        + Add Job
-      </button>
+      >  Manage Job <IoIosArrowForward /> </button>
     </Link>
+
+
   </div>
 </div>
 

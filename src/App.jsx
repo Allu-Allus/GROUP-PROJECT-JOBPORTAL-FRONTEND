@@ -36,7 +36,6 @@ function App() {
 
   return (
     <>
-    <Navbar/>
       <Routes>
          {/* User side */}
         <Route path='/description' element={<JobDescription getJob={getJob} setGetJob={setGetJob}/>} />
