@@ -14,7 +14,8 @@ import Footer from '../../Components/Footer';
 import { getjobApi } from '../../Service/allApi';
 
 function LandingPage() {
-    const[selectedCategory,setSelectedCategory] = useState("")
+    // const[selectedCategory,setSelectedCategory] = useState("")
+
     const[selectedLocation,setSelectedLocation] = useState("")
   const [filterOpen, setFilterOpen] = useState(false)
   const [search, setSearch] = useState("")
@@ -48,12 +49,12 @@ function LandingPage() {
   }
 //job filter
 const jobFilter = jobs.filter((job) => {
-    const matchesCategory = selectedCategory ? job.category === selectedCategory : true
+    // const matchesCategory = selectedCategory ? job.category === selectedCategory : true
     const matchesLocation = selectedLocation ? job.location === selectedLocation : true
-    return matchesCategory && matchesLocation
+    return  matchesLocation 
 })
   // decide which jobs to display
-  const displayJobs = filteredJobs.length > 0 ? filteredJobs : selectedCategory || selectedLocation ? jobFilter : jobs
+  const displayJobs = filteredJobs.length > 0 ? filteredJobs :  selectedLocation ? jobFilter : jobs
   return (
     <>
       <Navbar />
@@ -126,7 +127,7 @@ const jobFilter = jobs.filter((job) => {
 
           {/* Filters */}
           <div className={filterOpen ? "" : 'max-lg:hidden'}>
-            <div className='px-5 md:px-15 space-y-1.5 mt-5 md:mt-10'>
+            {/* <div className='px-5 md:px-15 space-y-1.5 mt-5 md:mt-10'>
               <h1 className='text-xl font-medium'>Filter by Categories</h1>
               {["Programming", "Data Science", "Designing", "Networking", "Management", "Marketing", "Cyber Security","React developer"].map((cat) => (
                 <div key={cat} className='gap-1 flex'>
@@ -134,7 +135,7 @@ const jobFilter = jobs.filter((job) => {
                   <label className='font-light' htmlFor={cat}>{cat}</label>
                 </div>
               ))}
-            </div>
+            </div> */}
 
             <div className='px-5 md:px-15 space-y-1.5 mt-5'>
               <h1 className='text-xl font-medium'>Filter by Location</h1>
@@ -160,6 +161,8 @@ const jobFilter = jobs.filter((job) => {
               ) : (
                 <p>No jobs available</p>
               )}
+
+       
             </div>
 
             {/* Pagination (static for now) */}

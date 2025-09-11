@@ -39,6 +39,7 @@ function App() {
       <Routes>
          {/* User side */}
         <Route path='/description' element={<JobDescription getJob={getJob} setGetJob={setGetJob}/>} />
+
         <Route path="/" element={<LandingPage getJob={getJob} setGetJob={setGetJob} />} />
         <Route path="/login" element={<Auth login />} />
         <Route path="/register" element={<Auth />} />
