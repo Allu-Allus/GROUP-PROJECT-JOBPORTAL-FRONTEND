@@ -12,6 +12,7 @@ import Jobapplypage from './Pages/user/Jobapplypage'
 import ManageJob from './Pages/admin/Managejob'
 import Addjob from './Pages/admin/Addjob'
 import { useState } from 'react'
+import Navbar from './Components/Navbar'
 
 function App() {
 
@@ -35,6 +36,7 @@ function App() {
 
   return (
     <>
+    <Navbar/>
       <Routes>
          {/* User side */}
         <Route path='/description' element={<JobDescription getJob={getJob} setGetJob={setGetJob}/>} />
