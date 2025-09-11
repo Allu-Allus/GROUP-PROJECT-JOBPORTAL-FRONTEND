@@ -14,7 +14,7 @@ import Footer from '../../Components/Footer';
 
 
 
-function LandingPage() {
+function LandingPage({getJob,setGetJob}) {
         const [filterOpen, setFilterOpen] = useState(false)
 
     return (

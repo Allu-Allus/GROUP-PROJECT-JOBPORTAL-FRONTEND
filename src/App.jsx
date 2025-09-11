@@ -11,15 +11,34 @@ import Myapplication from './Pages/user/Myapplication'
 import Jobapplypage from './Pages/user/Jobapplypage'
 import ManageJob from './Pages/admin/Managejob'
 import Addjob from './Pages/admin/Addjob'
+import { useState } from 'react'
 
 function App() {
+
+
+   const [getJob,setGetJob]=useState([])
+  const [jobData,setJobData]=useState({
+    jobTitle:"",
+    location:"",
+    jobtype:"",
+    experience:"",
+    dead:"",
+  jobrole:"",
+  requirements:"",
+  companyname:"",
+  jobid:"",
+  responsibilties:"",
+  worktype:"",
+  salary:""
+
+  })
 
   return (
     <>
       <Routes>
          {/* User side */}
-        <Route path='/description' element={<JobDescription />} />
-        <Route path="/" element={<LandingPage />} />
+        <Route path='/description' element={<JobDescription getJob={getJob} setGetJob={setGetJob}/>} />
+        <Route path="/" element={<LandingPage getJob={getJob} setGetJob={setGetJob} />} />
         <Route path="/login" element={<Auth login />} />
         <Route path="/register" element={<Auth />} />
         <Route path="/myapplication" element={<Myapplication/>} />
@@ -30,8 +49,8 @@ function App() {
         <Route path="/login-job" element={<AdminAuth login />} />
         <Route path="/register-job" element={<AdminAuth />} />
         <Route path="/administration" element={<Administration />} />
-        <Route path="/manage" element={<ManageJob />} />
-        <Route path="/add" element={<Addjob />} />
+        <Route path="/manage" element={<ManageJob getJob={getJob} setGetJob={setGetJob} />} />
+        <Route path="/add" element={<Addjob jobData={jobData} setJobData={setJobData}/>} />
       </Routes>
     </>
   )

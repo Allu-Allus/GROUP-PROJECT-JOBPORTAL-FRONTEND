@@ -1,6 +1,60 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { addappliApi } from '../../Service/allApi'
 
 function Jobapplypage() {
+    const [addUser,setAddUser]=useState({
+    phone:"",
+   job:"",
+    exp:"",
+    curlocation:"",
+  email:"",
+  skill:"",
+  portfolio:"",
+  linkedin:"",
+  file:"",
+  coverletter:"",
+  user:""
+    })
+    console.log(addUser);
+    
+
+
+
+const handleSubmit  = async()=>{
+     const { user, curlocation, phone, exp, job, email, skill, file } = addUser;
+
+
+if(!user||
+    !curlocation ||
+    !phone||
+    !exp ||
+    !job ||
+  !email ||
+  !skill ||
+  
+  !  file 
+ 
+  ){
+alert(`fill the form compeletely`)
+
+}else{try {
+        const result =await addappliApi(addUser)
+        console.log(result);
+        
+       
+        
+
+        
+      } catch (error) {
+        console.log(error);
+        
+      }}
+
+      
+    }
+
+
+    
   return (
    <>
       <div className="min-h-screen bg-gray-50 py-10 px-4">
@@ -28,6 +82,7 @@ function Jobapplypage() {
                   required
                   placeholder="Name"
                   className="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2 "
+                  onChange={(e)=>setAddUser({...addUser,user:e.target.value})}
                 />
               </div>
 
@@ -41,6 +96,7 @@ function Jobapplypage() {
                   required
                   placeholder="you@example.com"
                   className="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2 "
+                   onChange={(e)=>setAddUser({...addUser,email:e.target.value})}
                 />
               </div>
 
@@ -54,11 +110,12 @@ function Jobapplypage() {
                   required
                   placeholder="+91 98765 43210"
                   className="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2 "
+                   onChange={(e)=>setAddUser({...addUser,phone:e.target.value})}
                 />
               </div>
 
               <div>
-                <label htmlFor className="block text-sm font-medium">
+                <label className="block text-sm font-medium">
                   Current Location
                 </label>
                 <input
@@ -66,6 +123,7 @@ function Jobapplypage() {
                   type="text"
                   placeholder="City, Country"
                   className="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2 "
+                   onChange={(e)=>setAddUser({...addUser,curlocation:e.target.value})}
                 />
               </div>
             </div>
@@ -80,12 +138,11 @@ function Jobapplypage() {
                   Applying For<span className="text-red-500">*</span>
                 </label>
                 <input
-                  id="role"
-                  name="role"
-                  type="text"
+                 
                   required
                   placeholder="Frontend Developer"
                   className="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2 "
+                   onChange={(e)=>setAddUser({...addUser,job:e.target.value})}
                 />
               </div>
 
@@ -99,6 +156,7 @@ function Jobapplypage() {
             
                   placeholder="0 - 10"
                   className="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2 "
+                   onChange={(e)=>setAddUser({...addUser,exp:e.target.value})}
                 />
               </div>
 
@@ -107,11 +165,12 @@ function Jobapplypage() {
                   Key Skills
                 </label>
                 <input
-                  id
-                  name=""
+                  
+            
                   type="text"
                   placeholder="skills"
                   className="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2 "
+                   onChange={(e)=>setAddUser({...addUser,skill:e.target.value})}
                 />
               </div>
             </div>
@@ -126,11 +185,11 @@ function Jobapplypage() {
                   Portfolio / Website
                 </label>
                 <input
-                  id="portfolio"
-                  name="portfolio"
-                  type="url"
+                 
+                  type="text"
                   placeholder="https://your-portfolio.com"
                   className="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2 "
+                   onChange={(e)=>setAddUser({...addUser,portfolio:e.target.value})}
                 />
               </div>
 
@@ -139,11 +198,11 @@ function Jobapplypage() {
                   LinkedIn
                 </label>
                 <input
-                  id="linkedin"
-                  name="linkedin"
-                  type="url"
+                
+                  type="text"
                   placeholder="https://linkedin.com/in/username"
                   className="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2 "
+                   onChange={(e)=>setAddUser({...addUser,linkedin:e.target.value})}
                 />
               </div>
             </div>
@@ -158,12 +217,12 @@ function Jobapplypage() {
                   Upload Resume (PDF/DOC)<span className="text-red-500">*</span>
                 </label>
                 <input
-                  id="resume"
-                  name="resume"
+               
                   type="file"
                   required
                   accept=".pdf,.doc,.docx"
                   className="mt-1 block w-full text-sm file:mr-4 file:rounded-xl file:border-0 file:bg-blue-900 file:px-4 file:py-2 file:text-white hover:file:opacity-90"
+                   onChange={(e)=>setAddUser({...addUser,file:e.target.value})}
                 />
               </div>
 
@@ -172,11 +231,11 @@ function Jobapplypage() {
                   Cover Letter
                 </label>
                 <textarea
-                  id="coverLetter"
-                  name="coverLetter"
+                  
                   rows={5}
                   placeholder="Briefly tell us why you're a great fit..."
                   className="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2 "
+                   onChange={(e)=>setAddUser({...addUser,coverletter:e.target.value})}
                 />
               </div>
 
@@ -188,6 +247,7 @@ function Jobapplypage() {
             <button
               type="submit"
               className="w-full md:w-auto rounded-xl bg-[#007BFF] px-6 py-3 text-white font-medium shadow hover:opacity-90 "
+              onClick={handleSubmit}
             >
               Submit Application
             </button>
