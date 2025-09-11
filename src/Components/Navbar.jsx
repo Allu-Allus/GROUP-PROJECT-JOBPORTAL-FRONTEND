@@ -19,15 +19,15 @@ function Navbar() {
                     <div className='items-center '>
                         <button onClick={() => setMenu(!menu)} className='text-2xl items-center md:hidden'><IoIosMenu /></button>
                         <div className='hidden md:flex gap-5'>
-                            <button onClick={() => Navigate("/login-job")} className='cursor-pointer text-sm md:text-m text-gray-600'>Recruiter Login</button>
-                            <Link to={"/login"}><button className='cursor-pointer bg-blue-600 text-white text-m font-medium px-8 py-2 rounded-3xl'>Login</button></Link>
+                            <button onClick={() => Navigate("/login-job")} className='cursor-pointer text-sm md:text-m border border-[#00A896] text-[#00A896] rounded px-4 py-1'>Recruiter Login</button>
+                            <Link to={"/login"}><button className='cursor-pointer bg-[#00A896]     text-white border border-[#00A896] rounded px-4 py-1 '>Login</button></Link>
                         </div>
                     </div>
 
                 </div>
                 {menu && <div className='flex md:hidden justify-center pt-2 gap-20'>
-                    <Link to={"/login-job"}><button className='cursor-pointer text-sm md:text-m text-gray-600'>Recruiter Login</button></Link>
-                    <Link to={"/login"}> <button className='cursor-pointer bg-blue-600 text-white text-sm font-medium px-8 py-1 rounded-3xl'>Login</button></Link>
+                    <Link to={"/login-job"}><button className='cursor-pointer text-sm md:text-m border border-[#00A896] text-[#00A896] rounded px-4 py-1'>Recruiter Login</button></Link>
+                    <Link to={"/login"}> <button className='cursor-pointer bg-[#00A896]     text-white border border-[#00A896] rounded px-4 py-1'>Login</button></Link>
                 </div>}
             </div>
         </>

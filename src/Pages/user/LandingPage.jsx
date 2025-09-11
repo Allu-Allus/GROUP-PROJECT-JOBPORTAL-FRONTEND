@@ -62,7 +62,7 @@ const jobFilter = jobs.filter((job) => {
       <div className='min-h-screen pt-20'>
         {/* Search Section */}
         <div className='flex justify-center pt-10 px-2'>
-          <div className='bg-linear-to-l from-green-900 via-purple-850 to-yellow-400 h-76 w-full md:w-335 rounded-2xl'>
+          <div className='bg-linear-to-l from-green-900 via-purple-850 to-teal-400 h-76 w-full md:w-335 rounded-2xl'>
             <div className='text-white pt-15 space-y-2'>
               <h1 className='font-[500] text-2xl px-7 md:text-4xl text-center'>
                 Over 10,000+ jobs to apply
@@ -86,7 +86,8 @@ const jobFilter = jobs.filter((job) => {
                 <div className='flex items-center'>
                   <button
                     onClick={handleSearch}
-                    className='cursor-pointer bg-blue-700 hover:bg-blue-600 text-white text-m font-medium px-5 md:px-8 py-2 rounded'
+                    className='cursor-pointer bg-[#00A896] text-white text-m font-medium px-5 md:px-8 py-2 rounded 
+             hover:bg-white hover:text-[#00A896] border border-[#00A896] transition-colors duration-300'
                   >
                     Search
                   </button>
@@ -166,7 +167,7 @@ const jobFilter = jobs.filter((job) => {
             </div>
 
             {/* Pagination (static for now) */}
-            <div className='flex gap-2 mt-5 justify-center'>
+            {/* <div className='flex gap-2 mt-5 justify-center'>
               {[1, 2, 3].map((num) => (
                 <button
                   key={num}
@@ -175,13 +176,25 @@ const jobFilter = jobs.filter((job) => {
                   {num}
                 </button>
               ))}
-            </div>
+            </div> */}
+            <div className='flex gap-2 mt-5 justify-center'>
+  {[1, 2, 3].map((num) => (
+    <button
+      key={num}
+      className='w-10 h-10 rounded border border-[#00A896] bg-[#E0F7F5] text-[#00A896] 
+                 hover:bg-[#00A896] hover:text-white transition-colors duration-300'
+    >
+      {num}
+    </button>
+  ))}
+</div>
+
           </div>
         </div>
 
         {/* Mobile App Section */}
         <div className='px-10 md:px-15 mt-10'>
-          <div className="border rounded-xl p-10 max-sm:flex max-sm:gap-5 max-sm:flex-col md:flex justify-around text-white min-h-fit min-w-fit bg-linear-to-l from-purple-950 via-purple-850 to-purple-700">
+          <div className="border rounded-xl p-10 max-sm:flex max-sm:gap-5 max-sm:flex-col md:flex justify-around text-white min-h-fit min-w-fit bg-linear-to-l from-green-900 via-purple-850 to-teal-400">
             <div className='space-y-2'>
               <h1 className='text-4xl font-extrabold'>Apply on the go</h1>
               <p>Get real-time job updates on our App</p>

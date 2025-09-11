@@ -7,10 +7,10 @@ function JobCard({ job }) {
       <div className='px-5 py-2'>
         <h1 className='text-xl font-medium'>{job?.jobTitle}</h1>
         <div className='gap-2 items-center mt-2 flex'>
-          <button className='border text-sm font-light border-blue-500 bg-blue-50 rounded px-4 py-1'>
+          <button className='bg-gray-100 text-gray-800 px-5 py-2 rounded-md  '>
             {job?.location}
           </button>
-          <button className='border text-sm font-light border-red-500 bg-red-50 rounded px-4 py-1'>
+          <button className='bg-gray-100 text-gray-800 px-5 py-2 rounded-md '>
             {job?.experience}
           </button>
         </div>
@@ -18,12 +18,12 @@ function JobCard({ job }) {
         <p>{job?.salary}</p>
         <div className='gap-2 items-center mt-2 flex justify-between'>
           <Link to="/description" state={{ job }}>
-            <button className='bg-blue-500 text-white rounded px-4 py-1'>
+            <button className='bg-[#00A896] text-white px-4 py-1 rounded-md hover:bg-white hover:text-[#00A896] border border-[#00A896] transition-colors duration-300'>
               Apply Now
             </button>
           </Link>
 
-          <button className='border text-slate-500 rounded px-4 py-1'>
+          <button className='border border-[#00A896] text-[#00A896] rounded px-4 py-1'>
             {job?.level || "Intermediate Level"}
           </button>
         </div>
